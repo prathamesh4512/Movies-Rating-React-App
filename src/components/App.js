@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { data } from "../data";
+
+import Navbar from "./Navbar";
+import MovieCard from "./MovieCard";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <div className="main">
+        <div className="tabs">
+          <div className="tab">Movies</div>
+          <div className="tab">Favourites</div>
+        </div>
+
+        <div className="list">
+          {data.map((movie, index) => (
+            <MovieCard movie={movie} key={`movie-${index}`} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
