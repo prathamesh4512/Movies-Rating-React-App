@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   isMovieFav = (movie) => {
-    const movies = this.props.store.getState();
+    const { movies } = this.props.store.getState();
     if (movies.favourites.indexOf(movie) < 0) return false;
     return true;
   };

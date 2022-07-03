@@ -1,6 +1,12 @@
 import { combineReducers } from "redux";
 
-import { ADD_MOVIES, ADD_FAVS, REM_FAVS, SET_SHOWFAVS } from "../actions";
+import {
+  ADD_MOVIES,
+  ADD_FAVS,
+  REM_FAVS,
+  SET_SHOWFAVS,
+  ADD_SEARCH_RESULT,
+} from "../actions";
 
 const initialMoviesState = {
   list: [],
@@ -40,10 +46,20 @@ export function movies(state = initialMoviesState, action) {
 
 const initialSearchState = {
   result: {},
+  showSearchResults: false,
 };
 
 export function search(state = initialSearchState, action) {
-  return state;
+  switch (action.type) {
+    case ADD_SEARCH_RESULT:
+      return {
+        ...state,
+        results: action.movie,
+        showSearchResults: true, // to show searched movie on browser
+      };
+    default:
+      return state;
+  }
 }
 
 export const rootReducer = combineReducers({
