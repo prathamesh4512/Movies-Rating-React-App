@@ -3,6 +3,7 @@ export const ADD_MOVIES = "ADD_MOVIES";
 export const ADD_FAVS = "ADD_FAVS";
 export const REM_FAVS = "REM_FAVS";
 export const SET_SHOWFAVS = "SET_SHOWFAVS";
+export const ADD_MOVIE_TO_LIST = "ADD_MOVIE_TO_LIST";
 export const ADD_SEARCH_RESULT = "ADD_SEARCH_RESULT";
 
 //action creater
@@ -31,6 +32,13 @@ export function setShowFavs(val) {
   return {
     type: SET_SHOWFAVS,
     val,
+  };
+}
+
+export function addMovieToList(movie) {
+  return {
+    type: ADD_MOVIE_TO_LIST,
+    movie,
   };
 }
 

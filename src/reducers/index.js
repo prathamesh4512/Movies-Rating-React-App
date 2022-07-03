@@ -5,6 +5,7 @@ import {
   ADD_FAVS,
   REM_FAVS,
   SET_SHOWFAVS,
+  ADD_MOVIE_TO_LIST,
   ADD_SEARCH_RESULT,
 } from "../actions";
 
@@ -39,6 +40,11 @@ export function movies(state = initialMoviesState, action) {
         ...state,
         showFavs: action.val,
       };
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        list: [action.movie, ...state.list],
+      };
     default:
       return state;
   }
@@ -56,6 +62,11 @@ export function search(state = initialSearchState, action) {
         ...state,
         results: action.movie,
         showSearchResults: true, // to show searched movie on browser
+      };
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        showSearchResults: false,
       };
     default:
       return state;

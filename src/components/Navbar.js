@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { handleMovieSearch } from "../actions";
+import { addMovieToList, handleMovieSearch } from "../actions";
 
 class Navbar extends Component {
   constructor(props) {
@@ -8,6 +8,9 @@ class Navbar extends Component {
       searchText: "",
     };
   }
+  handleAddToMovies = (movie) => {
+    this.props.dispatch(addMovieToList(movie));
+  };
 
   handleSearchClick = () => {
     const { searchText } = this.state;
@@ -35,7 +38,9 @@ class Navbar extends Component {
                 <img src={movie.Poster} alt="search-pic" />
                 <div className="movie-info">
                   <span>{movie.Title}</span>
-                  <button>Add to Movies</button>
+                  <button onClick={() => this.handleAddToMovies(movie)}>
+                    Add to Movies
+                  </button>
                 </div>
               </div>
             </div>
