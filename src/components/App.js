@@ -31,12 +31,12 @@ class App extends React.Component {
 
   render() {
     const { store } = this.props;
-    const movies = store.getState();
+    const { movies, search } = store.getState();
     const { list, favourites, showFavs } = movies;
     const displayMovies = showFavs ? favourites : list;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar search={search} dispatch={store.dispatch} />
         <div className="main">
           <div className="tabs">
             <div
