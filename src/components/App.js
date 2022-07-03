@@ -1,42 +1,33 @@
-import { data } from "../data";
+import React from "react";
+import { connect } from "react-redux";
 
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
-import React from "react";
-
+import { data as moviesList } from "../data";
 import { addMovies, setShowFavs } from "../actions";
 
 class App extends React.Component {
   componentDidMount() {
-    const { store } = this.props;
-    store.subscribe(() => {
-      console.log("State Updated");
-      console.log(store.getState());
-      this.forceUpdate();
-    });
-
-    // dispatch action
-    store.dispatch(addMovies(data));
+    this.props.dispatch(addMovies(moviesList));
   }
 
   isMovieFav = (movie) => {
-    const { movies } = this.props.store.getState();
+    const { movies } = this.props;
     if (movies.favourites.indexOf(movie) < 0) return false;
     return true;
   };
 
   onChangeTab = (val) => {
-    this.props.store.dispatch(setShowFavs(val));
+    this.props.dispatch(setShowFavs(val));
   };
 
   render() {
-    const { store } = this.props;
-    const { movies, search } = store.getState();
-    const { list, favourites, showFavs } = movies;
+    // const { store } = this.props;
+    const { list, favourites, showFavs } = this.props.movies;
     const displayMovies = showFavs ? favourites : list;
     return (
       <div className="App">
-        <Navbar search={search} dispatch={store.dispatch} />
+        <Navbar />
         <div className="main">
           <div className="tabs">
             <div
@@ -57,14 +48,17 @@ class App extends React.Component {
             </div>
           </div>
           <div className="list">
-            {displayMovies.map((movie, index) => (
+            {displayMovies.map((movie) => (
               <MovieCard
                 movie={movie}
-                key={`movie-${index}`}
-                dispatch={store.dispatch}
+                key={movie.imdbID}
+                dispatch={this.props.dispatch}
                 favourites={this.isMovieFav(movie)}
               />
             ))}
+            {displayMovies.length === 0 ? (
+              <div className="no-movies">No movies to display! </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -72,4 +66,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+function mapStateToProps({ movies }) {
+  return {
+    movies,
+  };
+}
+
+const connectedAppComponent = connect(mapStateToProps)(App);
+
+export default connectedAppComponent;
