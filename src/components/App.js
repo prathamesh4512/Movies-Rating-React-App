@@ -52,7 +52,6 @@ class App extends React.Component {
               <MovieCard
                 movie={movie}
                 key={movie.imdbID}
-                dispatch={this.props.dispatch}
                 favourites={this.isMovieFav(movie)}
               />
             ))}
