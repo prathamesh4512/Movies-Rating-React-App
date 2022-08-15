@@ -1,10 +1,11 @@
 import React from "react";
 import { remFavs, addFavs } from "../actions";
+import { connect } from "react-redux";
 
 class MovieCard extends React.Component {
   handleFavClick = () => {
-    const { movie, dispatch, favourites } = this.props;
-    favourites ? dispatch(remFavs(movie)) : dispatch(addFavs(movie));
+    const { movie, favourites, remFavs, addFavs } = this.props;
+    favourites ? remFavs(movie) : addFavs(movie);
   };
 
   render() {
@@ -36,4 +37,11 @@ class MovieCard extends React.Component {
   }
 }
 
-export default MovieCard;
+function mapDispatchToProps(dispatch) {
+  return {
+    remFavs: (movie) => dispatch(remFavs(movie)),
+    addFavs: (movie) => dispatch(addFavs(movie)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(MovieCard);

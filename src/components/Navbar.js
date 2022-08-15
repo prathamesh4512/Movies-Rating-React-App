@@ -11,12 +11,15 @@ class Navbar extends Component {
     };
   }
   handleAddToMovies = (movie) => {
-    this.props.dispatch(addMovieToList(movie));
+    this.props.addMovieToList(movie);
+    this.setState({
+      searchText: "",
+    });
   };
 
   handleSearchClick = () => {
     const { searchText } = this.state;
-    this.props.dispatch(handleMovieSearch(searchText));
+    this.props.handleMovieSearch(searchText);
   };
 
   handleSearchChange = (e) => {
@@ -59,6 +62,11 @@ function mapStateToProps({ search }) {
   };
 }
 
-const connectedNavbarComponent = connect(mapStateToProps)(Navbar);
+function mapDispatchToProps(dispatch) {
+  return {
+    addMovieToList: (movie) => dispatch(addMovieToList(movie)),
+    handleMovieSearch: (searchText) => dispatch(handleMovieSearch(searchText)),
+  };
+}
 
-export default connectedNavbarComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

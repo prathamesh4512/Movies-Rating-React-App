@@ -8,7 +8,7 @@ import { addMovies, setShowFavs } from "../actions";
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.dispatch(addMovies(moviesList));
+    this.props.addMovies(moviesList);
   }
 
   isMovieFav = (movie) => {
@@ -18,7 +18,7 @@ class App extends React.Component {
   };
 
   onChangeTab = (val) => {
-    this.props.dispatch(setShowFavs(val));
+    this.props.setShowFavs(val);
   };
 
   render() {
@@ -71,6 +71,13 @@ function mapStateToProps({ movies }) {
   };
 }
 
-const connectedAppComponent = connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    addMovies: (val) => dispatch(addMovies(val)),
+    setShowFavs: (val) => dispatch(setShowFavs(val)),
+  };
+}
+
+const connectedAppComponent = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default connectedAppComponent;
