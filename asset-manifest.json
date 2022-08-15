@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Movies-Rating-React-App/static/css/main.8ba590d9.css",
-    "main.js": "/Movies-Rating-React-App/static/js/main.8f6166c3.js",
+    "main.css": "/Movies-Rating-React-App/static/css/main.e418bc68.css",
+    "main.js": "/Movies-Rating-React-App/static/js/main.81a95f9a.js",
     "index.html": "/Movies-Rating-React-App/index.html",
-    "main.8ba590d9.css.map": "/Movies-Rating-React-App/static/css/main.8ba590d9.css.map",
-    "main.8f6166c3.js.map": "/Movies-Rating-React-App/static/js/main.8f6166c3.js.map"
+    "main.e418bc68.css.map": "/Movies-Rating-React-App/static/css/main.e418bc68.css.map",
+    "main.81a95f9a.js.map": "/Movies-Rating-React-App/static/js/main.81a95f9a.js.map"
   },
   "entrypoints": [
-    "static/css/main.8ba590d9.css",
-    "static/js/main.8f6166c3.js"
+    "static/css/main.e418bc68.css",
+    "static/js/main.81a95f9a.js"
   ]
 }
